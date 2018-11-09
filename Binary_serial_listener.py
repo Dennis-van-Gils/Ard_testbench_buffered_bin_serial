@@ -23,7 +23,7 @@ if __name__ == "__main__":
         ser.close()
     except:
         pass
-    ser = serial.Serial("COM3", baudrate=1500000)    
+    ser = serial.Serial("COM6", baudrate=1500000)    
     #ser = serial.Serial("COM4")
     f_log = open(fn_log, 'w')
 

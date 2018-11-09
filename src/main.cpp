@@ -42,7 +42,8 @@ TOP PICK
 Serial        1.5e6   100          200         ramp  fine
 Results in Fs = 5000 Hz, perfect dt = 200 us
 50 buffers reads per sec --> 40 kb/s
-EDIT: unfortunately, duriong long term tests there are intermittent 'number of bytes to unpack' errors
+EDIT: unfortunately, during long term tests there are intermittent 'number of
+bytes to unpack' errors
 */
 
 #define BUFFER_SIZE 100
@@ -74,16 +75,16 @@ void my_ISR() {
   uint32_t now = micros();
   static uint16_t i_buffer = 0;  // Position in double buffer
   static float wave = 0.0;
-  
+
   //wave = sin(2*PI*WAVE_FREQ*now/1e6);  // ~ 280 usec to execute
   wave += 1;
   if (wave > BUFFER_SIZE * 3) {wave = 0;}
-  
+
   // Store in buffers
   buffer_time[i_buffer] = now;
   buffer_wave[i_buffer] = wave;
   i_buffer++;
-  
+
   if (i_buffer == BUFFER_SIZE) {
       fSendBuffer1 = true;
       current_buffer = 2;
@@ -113,7 +114,7 @@ void loop() {
   if (fSendBuffer1 || fSendBuffer2) {
     uint16_t bytes_written = 0;
     uint16_t offset;
-    
+
     if (fSendBuffer1) {
       //Ser_debug.print("buffer 1: ");
       offset = 0;
@@ -121,7 +122,7 @@ void loop() {
       //Ser_debug.print("buffer 2: ");
       offset = BUFFER_SIZE;
     }
-    
+
     bytes_written += Ser.write((uint8_t *) &som                , num_bytes_som);
     bytes_written += Ser.write((uint8_t *) &buffer_time[offset], num_bytes_time);
     bytes_written += Ser.write((uint8_t *) &buffer_wave[offset], num_bytes_wave);
