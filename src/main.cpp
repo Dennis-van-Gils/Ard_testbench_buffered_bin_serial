@@ -41,7 +41,7 @@ Serial        1.5e6   256          100         ramp  number of bytes to unpack e
 TOP PICK
 Serial        1.5e6   100          200         ramp  fine
 Results in Fs = 5000 Hz, perfect dt = 200 us
-50 buffers reads per sec --> 40 kb/s
+50 buffers read per sec --> 40 kb/s
 EDIT: unfortunately, during long term tests there are intermittent 'number of
 bytes to unpack' errors
 */
