@@ -39,7 +39,10 @@ Serial        1.5e6   256          150         ramp  borderline, gaps in receive
 Serial        1.5e6   256          100         ramp  number of bytes to unpack error
 
 TOP PICK
-Serial        1.5e6   256          200         ramp  fine, results in Fs = 5000 Hz, perfect dt = 200 us
+Serial        1.5e6   256          200         ramp  fine
+Results in Fs = 5000 Hz, perfect dt = 200 us
+50 buffers reads per sec --> 40 kb/s
+EDIT: unfortunately, duriong long term tests there are intermittent 'number of bytes to unpack' errors
 */
 
 #define BUFFER_SIZE 100
